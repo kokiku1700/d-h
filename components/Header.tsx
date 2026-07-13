@@ -1,3 +1,5 @@
+"use client";
+
 import githubBlack from "@/public/githubBlack.svg";
 import githubWhite from "@/public/githubWhite.svg";
 import lightMode from"@/public/lightMode.png";
@@ -5,8 +7,11 @@ import darkMode from "@/public/darkMode.png";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "./Logo";
+import { useSectionStore } from "@/store/useSectionStore";
 
 export default function Header () {
+    const currentSection = useSectionStore(state => state.currentSection);
+
 
     return ( 
         <header
@@ -29,7 +34,7 @@ export default function Header () {
                 <div
                     className="
                         basis-1/3 text-center">
-                    
+                    {currentSection}
                 </div>
 
                 {/* 이름, 깃허브 링크, 다크모드 */}
