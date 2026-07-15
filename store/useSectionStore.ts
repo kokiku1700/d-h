@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type Section = "hero" | "portfolio" | "study" | "trouble";
+export type Section = "hero" | "portfolio" | "study" | "trouble";
 
 type SectionStore = {
     currentSection: Section;

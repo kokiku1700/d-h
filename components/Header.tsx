@@ -8,17 +8,46 @@ import Image from "next/image";
 import Link from "next/link";
 import Logo from "./Logo";
 import { useSectionStore } from "@/store/useSectionStore";
+import { useThemeStore } from "@/store/useThemeStore";
+import { useEffect } from "react";
 
 export default function Header () {
     const currentSection = useSectionStore(state => state.currentSection);
+    const { currentTheme, setCurrentTheme } = useThemeStore();
 
+    useEffect(() => {
+        const savedTheme = localStorage.getItem("theme");
+
+        const initialTheme: "dark" | "light" = savedTheme === "dark" ? "dark" : "light";
+        
+        setCurrentTheme(initialTheme);
+
+        document.documentElement.classList.toggle("dark", initialTheme === "dark");
+    }, [setCurrentTheme]);
+
+    //
+    const handleThemeToggle = () => {
+
+        const html = document.documentElement;
+
+        if ( html.classList.contains("dark") ) {
+            html.classList.remove("dark");
+            localStorage.setItem("theme", "light");
+        } else {
+            html.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+        }
+
+        setCurrentTheme(currentTheme === "dark" ? "light" : "dark");
+    };
 
     return ( 
         <header
             className="  
                 sticky top-0 left-0
-                w-full h-15 shadow-sm
-                bg-white">
+                w-full h-15 shadow-sm shadow-gray-200
+                bg-white
+                dark:bg-black dark:shadow-white">
             <div 
                 className="
                     w-full h-full
@@ -33,7 +62,8 @@ export default function Header () {
                 {/* 섹션 제목 (메인 섹션이 아닐 경우 hidden) */}
                 <div
                     className="
-                        basis-1/3 text-center">
+                        basis-1/3 text-center italic font-semibold
+                        dark:text-white">
                     {currentSection}
                 </div>
 
@@ -41,7 +71,7 @@ export default function Header () {
                 <div
                     className="
                         basis-1/3 flex justify-center items-center gap-10">
-                    <span>
+                    <span className="dark:text-white">
                         윤동현
                     </span>
                     <Link
@@ -51,19 +81,21 @@ export default function Header () {
                         className="
                             relative w-10 h-10">
                         <Image 
-                            src={githubBlack} 
+                            src={currentTheme === "light" ? githubBlack : githubWhite} 
                             alt="깃허브 링크"
                             fill
                             priority/>
                     </Link>
                     <button
+                        onClick={handleThemeToggle}
                         className="
                             relative w-10 h-10
                             cursor-pointer">
                         <Image 
-                            src={darkMode}
+                            src={currentTheme === "light" ? darkMode : lightMode}
                             alt="다크모드"
                             fill
+                            sizes="(max-width: 768px) 40px, 64px"
                             priority/>
                     </button>
                 </div>

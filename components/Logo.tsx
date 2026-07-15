@@ -14,7 +14,8 @@ export default function Logo () {
             onClick={handleMoveHome}
             className="
                 text-4xl font-bold tracking-widest
-                cursor-pointer">
+                cursor-pointer
+                dark:text-white">
             D.H
         </span>
     );
