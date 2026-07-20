@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/Header";
 
 export const metadata: Metadata = {
 	title: "윤동현 - 포트폴리오",
@@ -15,7 +14,6 @@ export default function RootLayout({
   	return (
 		<html lang="ko">
 			<body>
-				<Header />
 				{children}
 			</body>
 		</html>

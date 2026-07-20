@@ -4,6 +4,7 @@ import { useSectionStore, Section } from "@/store/useSectionStore";
 import HeroSection from "./components/HeroSection";
 import PortfolioSection from "./components/PortfolioSection";
 import { useEffect } from "react";
+import Header from "@/components/Header";
 
 export default function Home() {
 	// zustand 상태 변경을 위한 변수 선언
@@ -45,6 +46,7 @@ export default function Home() {
 
     return (
         <main>
+			<Header />
 			<HeroSection />
 			<PortfolioSection />
         </main>
