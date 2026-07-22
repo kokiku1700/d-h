@@ -9,7 +9,7 @@ export default function Logo () {
     const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const router = useRouter();
 
-    const handleMoveAdmin = () => {
+    const handleMoveAdmin = async () => {
         clickCountRef.current += 1;
 
         // 클릭을 시작하면 2초 카운트 시작
@@ -23,6 +23,13 @@ export default function Logo () {
         // 2초안에 5번 클릭을 성공하면 관리자 페이지로 이동
         // 그리고 타이머 변수, 클릭 변수 초기화
         if ( clickCountRef.current >= 5 ) {
+            // 로그인 상태 확인
+            const res = await fetch('/api/admin/session');
+            const data = await res.json();
+            
+            // 로그인 중이라면 메시지 출력
+            if ( data ) return alert("이미 로그인 중");
+
             if ( timerRef.current ) {
                 clearTimeout(timerRef.current);
                 timerRef.current = null;
