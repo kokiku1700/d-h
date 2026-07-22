@@ -10,10 +10,12 @@ import Logo from "./Logo";
 import { useSectionStore } from "@/store/useSectionStore";
 import { useThemeStore } from "@/store/useThemeStore";
 import { useEffect } from "react";
+import { useAuthStore } from "@/store/useAuthStore";
 
 export default function Header () {
     const currentSection = useSectionStore(state => state.currentSection);
     const { currentTheme, setCurrentTheme } = useThemeStore();
+    const isLoggedIn = useAuthStore(state => state.isLoggedIn);
 
     // 로컬 스토리지에 저장되어 있는 다크모드를 확인하고 적용
     useEffect(() => {

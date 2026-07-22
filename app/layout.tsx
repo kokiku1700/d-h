@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import AuthInitializer from "@/components/AuthInitializer";
 
 export const metadata: Metadata = {
 	title: "윤동현 - 포트폴리오",
@@ -14,6 +15,7 @@ export default function RootLayout({
   	return (
 		<html lang="ko">
 			<body>
+				<AuthInitializer />
 				{children}
 			</body>
 		</html>
