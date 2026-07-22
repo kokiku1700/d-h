@@ -15,6 +15,7 @@ export default function Header () {
     const currentSection = useSectionStore(state => state.currentSection);
     const { currentTheme, setCurrentTheme } = useThemeStore();
 
+    // 로컬 스토리지에 저장되어 있는 다크모드를 확인하고 적용
     useEffect(() => {
         const savedTheme = localStorage.getItem("theme");
 
@@ -25,7 +26,7 @@ export default function Header () {
         document.documentElement.classList.toggle("dark", initialTheme === "dark");
     }, [setCurrentTheme]);
 
-    //
+    // 다크모드 아이콘 클릭 시 각 모드로 변환
     const handleThemeToggle = () => {
 
         const html = document.documentElement;
