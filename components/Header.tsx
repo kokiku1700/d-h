@@ -47,10 +47,10 @@ export default function Header () {
     return ( 
         <header
             className="  
-                sticky top-0 left-0
-                w-full h-15 shadow-sm shadow-gray-200
-                bg-white
-                dark:bg-black dark:shadow-white">
+                sticky top-0 left-0 z-50
+                w-full h-15 shadow-sm shadow-[#F59E0B]
+                bg-stone-100
+                dark:bg-zinc-800">
             <div 
                 className="
                     w-full h-full
@@ -65,8 +65,9 @@ export default function Header () {
                 {/* 섹션 제목 (메인 섹션이 아닐 경우 hidden) */}
                 <div
                     className="
-                        basis-1/3 text-center italic font-semibold
-                        dark:text-white">
+                        basis-1/3 
+                        text-zinc-800 text-center italic font-semibold
+                        dark:text-stone-100">
                     {currentSection}
                 </div>
 
@@ -74,7 +75,7 @@ export default function Header () {
                 <div
                     className="
                         basis-1/3 flex justify-center items-center gap-10">
-                    <span className="dark:text-white">
+                    <span className="text-zinc-800 dark:text-stone-100">
                         윤동현
                     </span>
                     <Link

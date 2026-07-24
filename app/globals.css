@@ -1,3 +1,42 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@keyframes hero-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-fade-up {
+    opacity: 0;
+    animation: hero-fade-up 700ms ease-out forwards;
+}
+
+.hero-delay-1 {
+    animation-delay: 500ms;
+}
+
+.hero-delay-2 {
+    animation-delay: 1s;
+}
+
+.hero-delay-3 {
+    animation-delay: 1.5s;
+}
+
+/* @media (prefers-reduced-motion: reduce) {
+    .hero-fade-up,
+    .hero-blob-left,
+    .hero-blob-right {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+} */
