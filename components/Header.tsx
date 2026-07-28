@@ -12,7 +12,11 @@ import { useThemeStore } from "@/store/useThemeStore";
 import { useEffect } from "react";
 import { useAuthStore } from "@/store/useAuthStore";
 
-export default function Header () {
+type Props = {
+    mainWhether: boolean;
+};
+
+export default function Header ({ mainWhether }: Props) {
     const currentSection = useSectionStore(state => state.currentSection);
     const { currentTheme, setCurrentTheme } = useThemeStore();
     const isLoggedIn = useAuthStore(state => state.isLoggedIn);
@@ -68,7 +72,7 @@ export default function Header () {
                         basis-1/3 
                         text-zinc-800 text-center italic font-semibold
                         dark:text-stone-100">
-                    {currentSection}
+                    {mainWhether ? currentSection : ""}
                 </div>
 
                 {/* 이름, 깃허브 링크, 다크모드 */}

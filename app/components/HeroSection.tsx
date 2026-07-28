@@ -3,11 +3,9 @@
 import { useAuthStore } from "@/store/useAuthStore";
 import { useThemeStore } from "@/store/useThemeStore";
 import { useEffect, useState } from "react";
-import settingDarkMode from "@/public/settingDarkMode.png";
-import settingLightMode from "@/public/settingLightMode.png";
-import Image from "next/image";
 import { useHeroQuery } from "@/hooks/useHeroQuery";
 import { useQueryClient } from "@tanstack/react-query";
+import EditButton from "@/components/EditButton";
 
 export default function HeroSection () {
     const isLoggedIn = useAuthStore(state => state.isLoggedIn);
@@ -32,19 +30,8 @@ export default function HeroSection () {
             { view: hero?.suffix ?? "" },
             { view: hero?.description ?? "" },
         ])
-    }, [hero])
-
-    if ( isLoading ) {
-        return <div className="w-full h-dvh">로딩 중...</div>;
-    };
-
-    if ( isError ) {
-        return <div className="w-full h-dvh">Hero section의 정보를 불러오지 못했습니다.</div>
-    };
-
-    // 서버에서 불러 온 hero 섹션의 정보를 배열로 저장
-
-    
+    }, [hero]);
+ 
     // 클릭 시 수정 모드로 변경
     const handleEdit = () => {
         setEditStatus(true);
@@ -71,18 +58,8 @@ export default function HeroSection () {
             id="hero" data-section
             className="
                 relative isolate overflow-hidden
-                w-full h-dvh 
-                flex justify-center items-center
-                bg-stone-50 px-6
-                dark:bg-zinc-900">
-            <div
-                aria-hidden="true"
-                className="
-                    pointer-events-none absolute inset-0 -z-30
-                    opacity-[0.035] dark:opacity-[0.06]
-                    [background-image:linear-gradient(to_right,#18181b_1px,transparent_1px),linear-gradient(to_bottom,#18181b_1px,transparent_1px)]
-                    [background-size:48px_48px]
-                    dark:[background-image:linear-gradient(to_right,#fafaf9_1px,transparent_1px),linear-gradient(to_bottom,#fafaf9_1px,transparent_1px)]"/>
+                w-full min-h-dvh 
+                flex justify-center items-center">
             <div
                 aria-hidden="true"
                 className="
@@ -101,27 +78,7 @@ export default function HeroSection () {
                     dark:bg-orange-500/10"/>
             {/* 관리자 로그인 시 표시되는 수정 아이콘 */}
             {isAuthchecked && isLoggedIn && 
-            <button
-                type="button"
-                onClick={handleEdit}
-                aria-label="히어로 섹션 수정"
-                className="
-                    absolute right-5 top-5 z-20
-                    flex size-11 items-center justify-center
-                    rounded-full
-                    bg-white/70 shadow-sm backdrop-blur-sm
-                    cursor-pointer
-                    transition duration-200
-                    hover:-translate-y-0.5 hover:shadow-md
-                    focus-visible:outline-2
-                    focus-visible:outline-offset-2
-                    focus-visible:outline-amber-500
-                    dark:bg-stone-100">
-                <Image 
-                    className="size-6"
-                    src={currentTheme === "dark" ? settingDarkMode : settingLightMode}
-                    alt="수정" />
-            </button>}
+            <EditButton handleEdit={handleEdit} theme={currentTheme} />}
             
             {/* 옵션에 따라 표시되는 화면 */}
             {editStatus 
@@ -180,10 +137,10 @@ export default function HeroSection () {
             // 보여지는 화면
             <div 
                 className="
-                    mx-auto flex max-w-4xl
-                    flex-col items-center
-                    text-center
-                    text-zinc-800
+                    mx-auto max-w-4xl
+                    flex flex-col items-center
+                    text-center text-zinc-800
+                    cursor-default
                     dark:text-stone-100">
                 <h1 
                     className="
