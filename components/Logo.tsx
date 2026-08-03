@@ -28,7 +28,7 @@ export default function Logo () {
             const data = await res.json();
             
             // 로그인 중이라면 메시지 출력
-            if ( data ) return alert("이미 로그인 중");
+            if ( data.authenticated ) return alert("이미 로그인 중");
 
             if ( timerRef.current ) {
                 clearTimeout(timerRef.current);

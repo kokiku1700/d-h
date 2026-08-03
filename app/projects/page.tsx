@@ -10,15 +10,13 @@ export default function Projects () {
                 relative
                 w-full min-h-dvh 
                 text-center
-                bg-stone-50
                 dark:bg-zinc-800">
             <Header mainWhether={false} />
             <div className="grid grid-cols-3 w-full py-10">
                 <div />
                 <h1 
                     className="
-                        text-2xl font-medium 
-                        dark:text-stone-100">
+                        text-2xl font-medium ">
                     프로젝트 목록
                 </h1>
                 <div>

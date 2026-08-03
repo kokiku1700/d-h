@@ -49,10 +49,7 @@ export default function Main () {
 
     return (
         <main 
-			className="
-				relative isolate
-				bg-stone-50
-                dark:bg-zinc-900">
+			className="relative isolate">
 			<div
                 aria-hidden="true"
                 className="

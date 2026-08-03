@@ -10,7 +10,11 @@ export default function AuthInitializer () {
     useEffect(() => {
         const checkAuth = async () => {
             try {
-                const res = await fetch("/api/admin/session");
+                const res = await fetch("/api/admin/session", {
+                    method: "GET",
+                    cache: "no-store",
+                    credentials: "include",
+                });
 
                 setLoggedIn(res.ok);
             } catch {

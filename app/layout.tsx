@@ -15,7 +15,11 @@ export default function RootLayout({
 }>) {
   	return (
 		<html lang="ko">
-			<body>
+			<body 
+				className="
+					bg-stone-50 text-zinc-900
+      				dark:bg-zinc-900 
+					dark:text-stone-100">
 				<Providers>
 					<AuthInitializer />
 					{children}

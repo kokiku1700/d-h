@@ -139,16 +139,13 @@ export default function HeroSection () {
                 className="
                     mx-auto max-w-4xl
                     flex flex-col items-center
-                    text-center text-zinc-800
-                    cursor-default
-                    dark:text-stone-100">
+                    text-center
+                    cursor-default">
                 <h1 
                     className="
                         hero-fade-up
                         text-xl font-medium
-                        tracking-[0.15em]
-                        text-zinc-500
-                        dark:text-stone-400">
+                        tracking-[0.15em]">
                     {heroView[0].view}
                 </h1>
                 <div 
@@ -175,10 +172,8 @@ export default function HeroSection () {
                         mt-12 max-w-2xl
                         text-base font-medium
                         leading-8
-                        text-zinc-600
                         sm:text-xl
-                        lg:text-3xl
-                        dark:text-stone-300">
+                        lg:text-3xl">
                     {heroView[3].view}
                 </p>
                 <div

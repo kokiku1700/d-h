@@ -21,6 +21,7 @@ export default function AdminLogin () {
         
         if ( data.ok ) {
             router.replace("/");
+            router.refresh();
         } else {
             alert("비밀번호 확인")
         };
