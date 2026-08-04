@@ -21,31 +21,22 @@ export default function Header ({ mainWhether }: Props) {
     const { currentTheme, setCurrentTheme } = useThemeStore();
     const isLoggedIn = useAuthStore(state => state.isLoggedIn);
 
-    // 로컬 스토리지에 저장되어 있는 다크모드를 확인하고 적용
     useEffect(() => {
-        const savedTheme = localStorage.getItem("theme");
-
-        const initialTheme: "dark" | "light" = savedTheme === "dark" ? "dark" : "light";
+        const initialTheme = document.documentElement.classList.contains("dark") ? "dark" : "light";
         
         setCurrentTheme(initialTheme);
 
-        document.documentElement.classList.toggle("dark", initialTheme === "dark");
     }, [setCurrentTheme]);
 
     // 다크모드 아이콘 클릭 시 각 모드로 변환
     const handleThemeToggle = () => {
-
         const html = document.documentElement;
 
-        if ( html.classList.contains("dark") ) {
-            html.classList.remove("dark");
-            localStorage.setItem("theme", "light");
-        } else {
-            html.classList.add("dark");
-            localStorage.setItem("theme", "dark");
-        }
+        const nextTheme: "light" | "dark" = html.classList.contains("dark") ? "light" : "dark";
 
-        setCurrentTheme(currentTheme === "dark" ? "light" : "dark");
+        html.classList.toggle("dark", nextTheme === "dark");
+        localStorage.setItem("theme", nextTheme);
+        setCurrentTheme(nextTheme);
     };
 
     return ( 
