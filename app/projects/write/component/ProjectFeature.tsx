@@ -3,7 +3,6 @@ import ProjectInputField from "./ProjectInputField";
 type Props = {
     title: string;
     description: string;
-    preview: string | null;
     onChangeInput: React.ChangeEventHandler<HTMLInputElement>;
     onChangeTextArea: React.ChangeEventHandler<HTMLTextAreaElement>;
     placeholder?: string;

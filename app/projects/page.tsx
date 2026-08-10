@@ -1,8 +1,12 @@
 import Header from "@/components/Header"
+import { getProject } from "@/lib/project/getProject"
 import Link from "next/link"
+import ProjectListCard from "./components/ProjectListCard";
 
 
-export default function Projects () {
+export default async function Projects () {
+    const projects = await getProject();
+
 
     return (
         <main 
@@ -34,7 +38,6 @@ export default function Projects () {
                         작성
                     </Link>
                 </div>
-
             </div>
             
             <section
@@ -42,24 +45,10 @@ export default function Projects () {
                     w-[95%] mx-auto
                     grid gap-6 
                     [grid-template-columns:repeat(auto-fit,minmax(400px,1fr))]">
-                <div className="border">
-                    프로젝트 1
-                </div>
-                <div className="border">
-                    프로젝트 1
-                </div>
-                <div className="border">
-                    프로젝트 1
-                </div>
-                <div className="border">
-                    프로젝트 1
-                </div>
-                <div className="border">
-                    프로젝트 1
-                </div>
-
+                {projects.map(project => (
+                    <ProjectListCard key={project.title} project={project}/>
+                ))}
             </section>
-            
         </main>
-    )
-}
+    );
+};

@@ -54,7 +54,7 @@ export default function Logo () {
             onClick={handleMoveAdmin}
             className="
                 text-4xl font-bold tracking-widest
-                text-[#F59E0B]
+                text-amber-400
                 cursor-default select-none">
             D.H
         </span>

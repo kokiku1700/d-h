@@ -98,7 +98,6 @@ export default function Write () {
             }
         ],
     });
-    const [preview, setPreview] = useState<string | null>(null);
     const router = useRouter();
 
     const handleAddImage = () => {
@@ -174,7 +173,7 @@ export default function Write () {
                 image: uploadedImage,
             };
 
-            const res = await fetch("/api/project/create", {
+            const res = await fetch("/api/project", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
@@ -588,7 +587,6 @@ export default function Write () {
                         <ProjectFeature 
                             key={idx}
                             title={f.title}
-                            preview={preview}
                             description={f.description}
                             onChangeInput={e => {
                                 setProject(prev => {

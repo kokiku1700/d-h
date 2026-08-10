@@ -42,7 +42,7 @@ export default function Header ({ mainWhether }: Props) {
         <header
             className="  
                 sticky top-0 left-0 z-50
-                w-full h-15 shadow-sm shadow-[#F59E0B]
+                w-full h-15 shadow-sm shadow-amber-400
                 bg-stone-100
                 dark:bg-zinc-800">
             <div 

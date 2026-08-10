@@ -2,6 +2,8 @@ import cloudinary from "@/lib/cloudinary";
 import { getSession } from "@/lib/session";
 import { UploadApiResponse } from "cloudinary";
 
+// cloudinary에 저장하기 위한 api router.
+
 export const runtime = "nodejs";
 
 export async function POST ( req: Request ) {
@@ -20,9 +22,15 @@ export async function POST ( req: Request ) {
             );
         };
 
+        // 폼 태그 혹은 키-값 쌍 형태의 데이터를 생성하고 서버로 전송하게 해주는 api
+        // fetch를 사용해 텍스트, 이미지, 파일 등을 보낼 때 유용
+        // 아래의 경우 이미지 파일을 보내기 위해 선언.
         const formData = await req.formData();
         const file = formData.get("file");
 
+        // 객체 instanceof 타입
+        // 즉 객체가 해당 타입이 맞는지 확인 하는 연산자.
+        // 아래의 경우 받은 데이터 file의 타입이 File인지 확인 
         if ( !(file instanceof File) ) {
             return Response.json(
                 {
@@ -35,6 +43,7 @@ export async function POST ( req: Request ) {
             );
         };
 
+        // file의 시작 문자가 "image/"인지 판별
         if ( !file.type.startsWith("image/") ) {
             return Response.json(
                 {
@@ -47,6 +56,7 @@ export async function POST ( req: Request ) {
             );
         };
 
+        // 업로드 가능한 파일 크기
         const maxSize = 10 * 1024 * 1024;
 
         if ( file.size > maxSize ) {
@@ -60,6 +70,7 @@ export async function POST ( req: Request ) {
             );
         };
 
+        // File 객체의 데이터를 원시 이진 데이터로 변환
         const arrayBuffer = await file.arrayBuffer();
         const buffer = Buffer.from(arrayBuffer);
 
