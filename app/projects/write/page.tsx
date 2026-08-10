@@ -13,6 +13,8 @@ import AddButton from "./component/AddButton";
 import ProjectImage from "./component/ProjectImage";
 import ProjectTroubleShooting from "./component/ProjectTroubleshooting";
 import Button from "@/components/Button";
+import { useRouter } from "next/navigation";
+import { uplaodImage } from "@/lib/uploadImage";
 
 const projectTypeOptions : {
     label: string;
@@ -97,6 +99,7 @@ export default function Write () {
         ],
     });
     const [preview, setPreview] = useState<string | null>(null);
+    const router = useRouter();
 
     const handleAddImage = () => {
         setProject(prev => ({
@@ -129,12 +132,77 @@ export default function Write () {
     const onSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        alert("굿 폼")
+        try {
+            if ( !project.url.thumbnail ) {
+                alert("썸네일을 선택해주세요.");
+                return;
+            };
+
+            const thumbnailUrl = await uplaodImage(project.url.thumbnail);
+
+            const uploadedImage = await Promise.all(
+                project.image
+                .filter((image): image is typeof image & { file: File } => 
+                    image.url instanceof File
+                )
+                .map(async (image, idx) => {
+                    if ( !image.url ) {
+                        throw new Error (
+                            `${idx + 1}번 째 이미지 파일이 없습니다.`
+                        );
+                    };
+
+                    const imageUrl = await uplaodImage(image.url);
+
+                    return {
+                        url: imageUrl,
+                        alt: image.alt,
+                        caption: image.caption,
+                        sortOrder: image.sortOrder,
+                    };
+                })
+            );
+
+            const body = {
+                ...project,
+
+                url: {
+                    ...project.url,
+                    thumbnail: thumbnailUrl,
+                },
+
+                image: uploadedImage,
+            };
+
+            const res = await fetch("/api/project/create", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body)
+            });
+
+            const data = await res.json();
+
+            if ( !res.ok ) {
+                throw new Error( data.message || "프로젝트 저장에 실패했습니다.");
+            };
+
+            alert("프로젝트가 등록되었습니다.");
+            router.replace("/projects");
+            router.refresh();
+        } catch ( error ) {
+            console.log(error);
+
+            const message = error instanceof Error 
+                ? error.message
+                : "프로젝트 등록 중 오류가 발생했습니댜.";
+
+            alert(message);
+        };
     };
 
     const onCancel = () => {
-        alert("취소")
-    }
+        router.push("/projects");
+    };
 
     return (
         <main 
@@ -350,7 +418,7 @@ export default function Write () {
                                 const file = e.target.files?.[0];
 
                                 if ( !file ) return;
-
+                                
                                 setProject(prev => {
                                     const image = [...prev.image];
 
@@ -551,17 +619,6 @@ export default function Write () {
                                         feature,
                                     }
                                 })
-                            }}
-                            onChangeImage={e => {
-                                const file = e.target.files?.[0];
-
-                                if ( !file ) return;
-
-                                setProject(prev => ({
-                                    ...prev,
-                                    image: {...prev.image, url: file}
-                                }))
-                                setPreview(URL.createObjectURL(file));
                             }}/>
                         ))}
                 </div>

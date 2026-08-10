@@ -19,7 +19,6 @@ type Props = {
 export default function Header ({ mainWhether }: Props) {
     const currentSection = useSectionStore(state => state.currentSection);
     const { currentTheme, setCurrentTheme } = useThemeStore();
-    const isLoggedIn = useAuthStore(state => state.isLoggedIn);
 
     useEffect(() => {
         const initialTheme = document.documentElement.classList.contains("dark") ? "dark" : "light";

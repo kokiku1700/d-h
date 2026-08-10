@@ -6,7 +6,6 @@ type Props = {
     preview: string | null;
     onChangeInput: React.ChangeEventHandler<HTMLInputElement>;
     onChangeTextArea: React.ChangeEventHandler<HTMLTextAreaElement>;
-    onChangeImage: React.ChangeEventHandler<HTMLInputElement>;
     placeholder?: string;
 };
 

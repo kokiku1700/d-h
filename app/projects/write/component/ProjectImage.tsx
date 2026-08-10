@@ -1,6 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import ProjectInputField from "./ProjectInputField";
-import AddButton from "./AddButton";
+import { useEffect, useState } from "react";
 
 type Props = {
     preview: File | null;
@@ -21,6 +23,23 @@ export default function ProjectImage({
     onChangeCaption,
     onClick
 }: Props) {
+    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+
+    useEffect(() => {
+        if ( !preview ) {
+            setPreviewUrl(null);
+            return;
+        };
+
+        const url = URL.createObjectURL(preview);
+
+        setPreviewUrl(url);
+
+        return () => {
+            URL.revokeObjectURL(url);
+        };
+    }, [preview]);
+
     return (
         <div
             className="
@@ -78,9 +97,9 @@ export default function ProjectImage({
 
                         dark:border-zinc-600
                         dark:bg-zinc-900/60">
-                    {preview ? (
+                    {previewUrl ? (
                         <Image
-                            src={String(preview)}
+                            src={previewUrl}
                             alt={alt || "프로젝트 이미지 미리보기"}
                             fill
                             sizes="

@@ -139,7 +139,7 @@ export default function HeroSection () {
                 className="
                     mx-auto max-w-4xl
                     flex flex-col items-center
-                    text-center
+                    text-center break-keep
                     cursor-default">
                 <h1 
                     className="
@@ -171,7 +171,7 @@ export default function HeroSection () {
                         hero-fade-up hero-delay-2
                         mt-12 max-w-2xl
                         text-base font-medium
-                        leading-8
+                        leading-10
                         sm:text-xl
                         lg:text-3xl">
                     {heroView[3].view}
