@@ -1,11 +1,11 @@
 import Header from "@/components/Header"
-import { getProject } from "@/lib/project/getProject"
+import { getProjects } from "@/lib/project/getProjects"
 import Link from "next/link"
 import ProjectListCard from "./components/ProjectListCard";
 
 
 export default async function Projects () {
-    const projects = await getProject();
+    const projects = await getProjects();
 
 
     return (
