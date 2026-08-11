@@ -113,11 +113,11 @@ export default function ProjectListCard ({ project }: Props) {
                 {/* 하단 */}
                 <div
                     className="
-                        flex items-end justify-between
+                        flex flex-col items-end justify-between gap-3
                         border-t border-zinc-100
                         pt-4
                         dark:border-zinc-700">
-                    <div className="text-sm text-zinc-500 dark:text-zinc-400">
+                    <div className="mx-auto text-sm text-zinc-500 dark:text-zinc-400">
                         {project.role}
                     </div>
 

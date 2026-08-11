@@ -91,11 +91,11 @@ export default async function Project({ params }: Props) {
                     <p
                         className="
                             mt-6
-                            max-w-3xl
+                            w-full
                             text-lg
                             leading-8
                             text-zinc-600
-
+                        
                             dark:text-zinc-400">
                         {project.summary}
                     </p>
@@ -217,7 +217,10 @@ export default async function Project({ params }: Props) {
                                 dark:border-zinc-800">
                             <InfoItem
                                 label="진행 기간"
-                                value={`${project.started_at} ~ ${project.ended_at ?? "진행 중"}`}
+                                value={`
+                                    ${project.started_at ? new Date(project.started_at).toLocaleDateString() : ""} 
+                                    ~ 
+                                    ${project.ended_at ? new Date(project.ended_at).toLocaleDateString() : "진행 중"}`}
                             />
 
                             <InfoItem
