@@ -282,6 +282,7 @@ export default function Write () {
 
                                 focus-within:after:scale-x-100">
                             <DatePicker
+                                aria-label="작업 기간"
                                 selectsRange
                                 startDate={project.date.start}
                                 endDate={project.date.end}

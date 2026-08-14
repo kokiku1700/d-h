@@ -3,6 +3,10 @@ import { getProjects } from "@/lib/project/getProjects"
 import Link from "next/link"
 import ProjectListCard from "./components/ProjectListCard";
 
+// 프로젝트를 새로 작성해면 배포환경에서 안보이는 문제가 발생.
+// 하지만 로컬 환경에서는 보임.
+// 배포 환경에서 next.js는 이 페이지를 정적 페이지로 인식
+// 때문에 강제로 동적 페이지로 인식시키기 위해 "force-dynamic"을 사용.
 export const dynamic = "force-dynamic";
 
 export default async function Projects () {

@@ -41,6 +41,7 @@ export default function AdminLogin () {
                 flex justify-center items-center
                 dark:bg-black">
             <input 
+                aria-label="비밀번호"
                 type="password" 
                 value={password} onChange={(e) => setPassword(e.target.value)}
                 onKeyDown={handleEnterKeyDown}
