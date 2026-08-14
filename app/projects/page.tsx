@@ -3,6 +3,7 @@ import { getProjects } from "@/lib/project/getProjects"
 import Link from "next/link"
 import ProjectListCard from "./components/ProjectListCard";
 
+export const dynamic = "force-dynamic";
 
 export default async function Projects () {
     const projects = await getProjects();
@@ -44,7 +45,7 @@ export default async function Projects () {
                 className="
                     w-[95%] mx-auto
                     grid gap-6 
-                    [grid-template-columns:repeat(auto-fit,minmax(400px,1fr))]">
+                    [grid-template-columns:repeat(auto-fit,minmax(500px,1fr))]">
                 {projects.map(project => (
                     <ProjectListCard key={project.title} project={project}/>
                 ))}
