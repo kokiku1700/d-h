@@ -5,7 +5,7 @@ import HeroSection from "./HeroSection";
 import ProjectSection from "./ProjectSection";
 import { useEffect } from "react";
 import Header from "@/components/Header";
-import MyInfoSection from "./MyInfoSection";
+import AboutMeSection from "./AboutMeSection";
 
 export default function Main () {
 	// zustand 상태 변경을 위한 변수 선언
@@ -51,8 +51,8 @@ export default function Main () {
         <main className="relative isolate">
 			<Header mainWhether={true} />
 			<HeroSection />
+			<AboutMeSection />
 			<ProjectSection />
-			<MyInfoSection />
         </main>
     )
 }

@@ -166,6 +166,14 @@ export default function HeroSection () {
                         hero-fade-up hero-delay-3
                         mt-15 h-px w-16
                         bg-amber-500"/>
+                <span
+                    className="
+                        hero-fade-up hero-delay-3
+                        mt-20">
+                    <span className="animate-scroll-blink">
+                        scroll
+                    </span>
+                </span>
             </div>}
         </section>
     );

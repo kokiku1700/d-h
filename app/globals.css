@@ -31,6 +31,20 @@
     animation-delay: 2s;
 }
 
+@keyframes scroll-blink {
+    0%, 100% {
+        color: var(--color-amber-400);
+    }
+
+    50% {
+        color: var(--color-amber-200);
+    }
+}
+
+.animate-scroll-blink {
+    animation: scroll-blink 2s ease-in-out infinite;
+}
+
 /* @media (prefers-reduced-motion: reduce) {
     .hero-fade-up,
     .hero-blob-left,
