@@ -60,22 +60,6 @@ export default function HeroSection () {
                 relative isolate overflow-hidden
                 w-full min-h-dvh 
                 flex justify-center items-center">
-            <div
-                aria-hidden="true"
-                className="
-                    pointer-events-none absolute
-                    -left-32 top-10 -z-20
-                    h-80 w-80 rounded-full
-                    bg-amber-400/20 blur-[120px]
-                    dark:bg-amber-500/15"/>
-            <div
-                aria-hidden="true"
-                className="
-                    pointer-events-none absolute
-                    -bottom-20 right-0 -z-20
-                    h-96 w-96 rounded-full
-                    bg-orange-300/20 blur-[140px]
-                    dark:bg-orange-500/10"/>
             {/* 관리자 로그인 시 표시되는 수정 아이콘 */}
             {isAuthchecked && isLoggedIn && 
             <EditButton handleEdit={handleEdit} theme={currentTheme} />}

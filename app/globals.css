@@ -20,15 +20,15 @@
 }
 
 .hero-delay-1 {
-    animation-delay: 500ms;
-}
-
-.hero-delay-2 {
     animation-delay: 1s;
 }
 
-.hero-delay-3 {
+.hero-delay-2 {
     animation-delay: 1.5s;
+}
+
+.hero-delay-3 {
+    animation-delay: 2s;
 }
 
 /* @media (prefers-reduced-motion: reduce) {

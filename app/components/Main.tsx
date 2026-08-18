@@ -48,16 +48,7 @@ export default function Main () {
 	}, [setCurrentSection]);
 
     return (
-        <main 
-			className="relative isolate">
-			<div
-                aria-hidden="true"
-                className="
-                    pointer-events-none absolute inset-0 -z-10
-                    opacity-[0.035] dark:opacity-[0.06]
-                    [background-image:linear-gradient(to_right,#18181b_1px,transparent_1px),linear-gradient(to_bottom,#18181b_1px,transparent_1px)]
-                    [background-size:48px_48px]
-                    dark:[background-image:linear-gradient(to_right,#fafaf9_1px,transparent_1px),linear-gradient(to_bottom,#fafaf9_1px,transparent_1px)]"/>
+        <main className="relative isolate">
 			<Header mainWhether={true} />
 			<HeroSection />
 			<ProjectSection />
