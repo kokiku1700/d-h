@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import Slides from "./projectComponents/Slides";
 import { useAuthStore } from "@/store/useAuthStore";
 import EditButton from "@/components/EditButton";
 import { useThemeStore } from "@/store/useThemeStore";
 import ViewMoreButton from "@/components/ViewMoreButton";
+import ProjectCard from "./projectComponents/ProjectCard";
+import { useProjectsQuery } from "@/hooks/useProjectsQuery";
 
 
 export default function ProjectSection () {
@@ -13,6 +14,7 @@ export default function ProjectSection () {
     const isAuthchecked = useAuthStore(state => state.isAuthchecked);
     const [editStatus, setEditStatus] = useState(false);
     const currentTheme = useThemeStore(state => state.currentTheme);
+    const { data: projects } = useProjectsQuery();
 
     const handleEdit = () => {
         setEditStatus(true);
@@ -23,7 +25,7 @@ export default function ProjectSection () {
             id="project"
             data-section
             className="
-                relative w-full h-dvh 
+                relative w-full p-5
                 flex flex-col justify-center items-center">
             <h1 
                 className="
@@ -31,13 +33,18 @@ export default function ProjectSection () {
                     dark:text-stone-100">
                 프로젝트
             </h1>
-            <ViewMoreButton url="projects" />
+            
             {isLoggedIn && isAuthchecked && 
             <EditButton handleEdit={handleEdit} theme={currentTheme} />}
-            <div className="w-[80%] h-[80%]">
-                <Slides />
-            </div>
             
+            {
+                projects?.map((project, index) => (
+                    <ProjectCard 
+                        key={index}
+                        project={project} index={index} />
+                ))
+            }
+            <ViewMoreButton url="projects" />
         </section>
     )
 }

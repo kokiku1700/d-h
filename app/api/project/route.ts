@@ -1,5 +1,14 @@
 import { sql } from "@/lib/sql";
 
+export async function GET () {
+    const rows = await sql`
+        select *
+        from projects
+        where is_featured = true;
+    `;
+
+    return Response.json(rows);
+}
 
 // 프로젝트 저장
 export async function POST ( req: Request ) {

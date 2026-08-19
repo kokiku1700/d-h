@@ -10,7 +10,6 @@ import Logo from "./Logo";
 import { useSectionStore } from "@/store/useSectionStore";
 import { useThemeStore } from "@/store/useThemeStore";
 import { useEffect } from "react";
-import { useAuthStore } from "@/store/useAuthStore";
 
 type Props = {
     mainWhether: boolean;
@@ -69,9 +68,6 @@ export default function Header ({ mainWhether }: Props) {
                 <div
                     className="
                         basis-1/3 flex justify-center items-center gap-10">
-                    <span className="text-zinc-800 dark:text-stone-100">
-                        윤동현
-                    </span>
                     <Link
                         href="https://github.com/kokiku1700"
                         target="_blank"
