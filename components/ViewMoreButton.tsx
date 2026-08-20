@@ -28,7 +28,7 @@ export default function ViewMoreButton ({ url }: Props) {
             More
             <span
                 className="
-                    transition-transform duration-200
+                    transition-transform duration-300
                     group-hover:translate-x-1">
                 →
             </span>  
